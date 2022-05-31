@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  gort:
+    depends_on:
+      - postgres
+    image: getgort/gort:latest
+    command: "start -v"
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./development.yml:/config.yml
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - gort
+
+  postgres:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=gort
+      - POSTGRES_PASSWORD=veryKleverPassw0rd!
+    networks:
+      - gort
+
+networks:
+  gort:
+    name: gort

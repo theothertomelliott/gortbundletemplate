@@ -1,0 +1,5 @@
+#!/bin/bash
+
+GORT="docker run --rm --network gort -v $(pwd)/bundle.yml:/bundle.yml -v $(pwd)/gorthome:/root/.gort getgort/gort:latest"
+
+$GORT "$@"

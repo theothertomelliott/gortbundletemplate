@@ -1,0 +1,23 @@
+---
+gort_bundle_version: 1
+
+name: test
+version: 0.0.1
+image: getgort/test:latest
+
+author: Tom Elliott <tom.w.elliott@gmail.com>
+homepage: https://guide.getgort.io
+description: A test bundle with custom Dockerfile.
+long_description: |-
+  This is a very simple command bundle that includes a few very simple commands.
+templates:
+  command: :-
+    {{ header | color "#00FF00" }}
+    {{ text | monospace true }}{{ .Response.Out }}{{ endtext }}
+
+commands:
+  testenv:
+    description: "Print environment."
+    executable: [ "/usr/bin/env" ]
+    rules:
+      - allow
